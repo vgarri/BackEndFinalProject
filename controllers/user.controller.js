@@ -42,7 +42,7 @@ const createUser = async (req, res, next) => {
             "items_created": response,
             message: `User created: ${req.body.email}`,
             data: newUser
-        }).redirect('/')
+        })
     } catch (error) {
         console.error('Error updating User:', error)
         res.status(500).json({ error: 'Internal server error' })

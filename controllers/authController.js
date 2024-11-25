@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 // Inicio de sesión
 async function login(req, res) {
     const { email, password } = req.body; 
+    console.log("Datos recibidos:", { email, password });
     try {
         // Buscar el usuario por email
         const users = await getUsersByEmail(email); // Obtener el usuario por email

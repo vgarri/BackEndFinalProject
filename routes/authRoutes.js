@@ -4,11 +4,11 @@ const router = express.Router();
 const passport = require('passport');
 const authMiddleware = require('../middlewares/authMiddleware');  //extraer el token y verificar si es correcto
 const authorizeRole = require('../middlewares/roleMiddleware'); //permitir acceso según los roles
-const { userDataValidateChainMethod } = require('../validation/user.validation');
+// const { userDataValidateChainMethod } = require('../validation/user.validation');
 
 
 // Controladores
-const { logout, googleLogin } = require('../controllers/authController'); //funciones para registrar
+const { login,logout, googleLogin } = require('../controllers/authController'); //funciones para registrar
 const { getProfile, getFavorites } = require('../controllers/views.controller'); //funciones para usuariio solo
 const { getUsersView, getDashboard } = require('../controllers/views.controller');  //funciones  para admin
 const { createJobOffer } = require('../controllers/jobOffers.controller'); //funciones para admin
@@ -16,10 +16,10 @@ const userController = require('../controllers/user.controller') //funcion para 
 
 // Rutas de autenticación
 
-router.get('/register', (req, res) => res.render('register'));  
-router.post('/register', userDataValidateChainMethod, userController.createUser);                      
-router.get('/login', (req, res) => res.render('home'));        
-router.post('/login', (req, res) => res.render('home'));                            
+router.get('/register', (req, res) => res.render('home'));  
+router.post('/register',userController.createUser);                      
+router.get('/login', (req, res) => res.render('home'));         
+router.post('/login', login);
 router.get('/register', (req, res) => res.render('home'));                         
 router.get('/logout', logout);                                  
 router.get('/', (req, res) => {
